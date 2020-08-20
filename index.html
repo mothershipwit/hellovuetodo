@@ -36,7 +36,7 @@
         text-align: left;
         font-size: 2em;
       }
-      .task-checked {
+      .mark-checked {
             color: green;
             text-decoration: line-through;
         }
@@ -132,6 +132,9 @@
             });
             this.newTask = null;
           },
+          markChecked: function (task) {
+                        task.isComplete = task.isComplete ? false : true;
+                    },
           deleteTask: function (task) {
             this.tasks = this.tasks.filter(function (e) {
               return e.subject != task.subject;
