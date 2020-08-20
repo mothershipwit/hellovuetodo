@@ -36,6 +36,10 @@
         text-align: left;
         font-size: 2em;
       }
+      .complete {
+            color: green;
+            text-decoration: line-through;
+        }
 
       .task-done {
         text-decoration: line-through;
@@ -120,6 +124,7 @@
             if (this.newTask == null) {
               alert("Enter a Task!");
               return;
+              console.log("Is task entered?");
             }
             this.tasks.push({
               done: false,
