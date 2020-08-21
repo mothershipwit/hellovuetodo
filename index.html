@@ -15,6 +15,7 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
+    
     <style>
       h1 {
         text-align: center;
@@ -36,20 +37,13 @@
         text-align: left;
         font-size: 2em;
       }
-      .mark-checked {
-            color: green;
-            text-decoration: line-through;
-        }
-
+  
       .task-done {
         text-decoration: line-through;
-        color: rgb(62, 177, 27);
       }
-
       .task-todo {
-        font-style: italic;
-        color: rgb(20, 14, 14);
-      }
+            font-style: italic;
+        }
     </style>
   </head>
 
@@ -65,18 +59,16 @@
 
       <ol>
         <li v-for="task in tasks">
-          <input
-            type="checkbox"
-            v-model="newTask"
-            placeholder="Add Your Task"
-            v-on:keyup.enter="saveTask"
-          />
+       
+        <input type="checkbox" v-model="task.done">
+
           <button type="button" v-on:click="deleteTask(task)">&times;</button>
-          <span v-bind:class="task.done ? 'checked' : 'notChecked'">
-            {{ task.subject }}</span
-          >
+          <span v-bind:class="task.done ? 'task-done' : 'task-todo'">
+            {{ task.subject }}
+        </span>
+          
           <i
-            v-bind:class="task.done ? 'fa fa-check' : 'fa fa fa-exclamation-circle'"
+            v-bind:class="task.done ? 'fa fa-check' : 'fa fa-exclamation-circle'"
           ></i>
         </li>
       </ol>
@@ -132,9 +124,7 @@
             });
             this.newTask = null;
           },
-          markChecked: function (task) {
-                        task.isComplete = task.isComplete ? false : true;
-                    },
+         
           deleteTask: function (task) {
             this.tasks = this.tasks.filter(function (e) {
               return e.subject != task.subject;
